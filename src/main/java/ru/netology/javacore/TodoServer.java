@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class TodoServer {
     //...
+    int port = 0; // TODO
 
     public TodoServer(int port, Todos todos) {
         //...

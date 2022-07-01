@@ -1,21 +1,26 @@
 package ru.netology.javacore;
 
 import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Todos {
-    //...
+    List<String> tasks = new ArrayList<>();
 
     public void addTask(String task) {
-        //...
+        if (!tasks.contains(task)) tasks.add(task);
     }
 
     public void removeTask(String task) {
-        //...
+        tasks.remove(task);
     }
 
-    public String getAllTasks() {
-        //...
+    public void getAllTasks() {
+         tasks.stream()
+                 .sorted()
+                 .forEach(System.out::println);
     }
 
 }
