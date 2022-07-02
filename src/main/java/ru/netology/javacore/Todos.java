@@ -1,10 +1,7 @@
 package ru.netology.javacore;
 
 import java.util.*;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Todos {
     List<String> tasks = new ArrayList<>();
@@ -17,10 +14,12 @@ public class Todos {
         tasks.remove(task);
     }
 
-    public void getAllTasks() {
-         tasks.stream()
+    public String getAllTasks() {
+         return tasks.stream()
                  .sorted()
-                 .forEach(System.out::println);
+                 .collect(Collectors.toList())
+                 .toString();
+
     }
 
 }
