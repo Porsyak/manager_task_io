@@ -2,7 +2,9 @@ package ru.netology.javacore;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonToken;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -20,16 +22,22 @@ public class TodoServer {
 
     public void start() throws IOException {
         System.out.println("Starting server at " + port + "...");
-        try (ServerSocket serverSocket = new ServerSocket(8989);) { // стартуем один раз
+        try (ServerSocket serverSocket = new ServerSocket(8089);) { // стартуем один раз
             while (true) { // в цикле (!) принимаем подключение
                 try (
                         Socket socket = serverSocket.accept();
                         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                         PrintWriter out = new PrintWriter(socket.getOutputStream());
-                    )
-                {
-                  String task = in.readLine();
-                  out.println("Привет, ты прислал " + task);
+                ) {
+                    String task = in.readLine();
+                    JsonObject jsonObject = JsonParser.parseString(task).getAsJsonObject();
+                    String typeTask = jsonObject.get("type")
+                            .toString()
+                            .replace("\"","");
+                    String addTask = jsonObject.get("task")
+                            .toString();
+                    if (typeTask.equals("ADD")) todos.addTask(addTask);
+                    out.println("Твои задачи: " + todos.getAllTasks());
                 }
             }
         } catch (IOException e) {
