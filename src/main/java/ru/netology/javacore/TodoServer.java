@@ -12,8 +12,24 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class TodoServer {
-    final int port;
-    Todos todos;
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
+    }
+
+    public Todos getTodos() {
+        return todos;
+    }
+
+    public void setTodos(Todos todos) {
+        this.todos = todos;
+    }
+
+    private  int port;
+    private Todos todos;
 
     public TodoServer(int port, Todos todos) {
         this.port = port;
