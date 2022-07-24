@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Todos {
-    List<String> tasks = new ArrayList<>();
+    private final List<String> tasks = new ArrayList<>();
 
     public void addTask(String task) {
         if (!tasks.contains(task)) tasks.add(task);

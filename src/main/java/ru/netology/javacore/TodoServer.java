@@ -38,7 +38,8 @@ public class TodoServer {
 
     public void start() throws IOException {
         System.out.println("Starting server at " + port + "...");
-        try (ServerSocket serverSocket = new ServerSocket(8089);) { // стартуем один раз
+        try (ServerSocket serverSocket = new ServerSocket(8989);) { // стартуем один раз
+            //noinspection InfiniteLoopStatement
             while (true) { // в цикле (!) принимаем подключение
                 try (
                         Socket socket = serverSocket.accept();
