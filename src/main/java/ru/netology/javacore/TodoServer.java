@@ -53,8 +53,11 @@ public class TodoServer {
                             .replace("\"","");
                     String addTask = jsonObject.get("task")
                             .toString();
-                    if (typeTask.equals("ADD")) todos.addTask(addTask);
-                    out.println("Твои задачи: " + todos.getAllTasks());
+                    if (typeTask.equalsIgnoreCase("ADD")) todos.addTask(addTask);
+                    out.println(todos.getAllTasks());
+                    if (typeTask.equalsIgnoreCase("remove")) todos.removeTask(addTask);
+                    out.println(todos.getAllTasks());
+
                 }
             }
         } catch (IOException e) {
